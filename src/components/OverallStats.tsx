@@ -61,46 +61,84 @@ export function OverallStats({ subjects, settings }: OverallStatsProps) {
       {/* Bunks Available */}
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">Total Bunks Available</CardTitle>
+          <CardTitle className="text-sm font-medium">Safe Bunks Available</CardTitle>
           <Clock className="h-4 w-4 text-muted-foreground" />
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">{totalBunksAllowed}</div>
-          <p className="text-xs text-muted-foreground">
-            Classes you can safely miss
-          </p>
+          <div className="text-2xl font-bold text-primary">{totalBunksAllowed}</div>
+          <div className="space-y-1">
+            <p className="text-xs text-muted-foreground">
+              Classes you can safely miss
+            </p>
+            {totalBunksAllowed > 0 ? (
+              <div className="text-xs bg-green-100 dark:bg-green-950/20 text-green-700 dark:text-green-300 px-2 py-1 rounded">
+                ✅ You'll stay above 85% threshold
+              </div>
+            ) : (
+              <div className="text-xs bg-amber-100 dark:bg-amber-950/20 text-amber-700 dark:text-amber-300 px-2 py-1 rounded">
+                ⚠️ Any bunk may risk condonation
+              </div>
+            )}
+          </div>
         </CardContent>
       </Card>
 
       {/* Status Summary */}
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">Status Summary</CardTitle>
+          <CardTitle className="text-sm font-medium">Academic Status</CardTitle>
           {status === 'safe' && <CheckCircle className="h-4 w-4 text-success" />}
           {status === 'warning' && <AlertCircle className="h-4 w-4 text-warning" />}
           {status === 'danger' && <AlertCircle className="h-4 w-4 text-destructive" />}
         </CardHeader>
         <CardContent>
-          <div className="space-y-2">
-            {safeSubjects > 0 && (
-              <Badge className="bg-success text-success-foreground mr-2">
-                {safeSubjects} Safe
-              </Badge>
-            )}
-            {warningSubjects > 0 && (
-              <Badge className="bg-warning text-warning-foreground mr-2">
-                {warningSubjects} Warning
-              </Badge>
-            )}
-            {dangerSubjects > 0 && (
-              <Badge className="bg-destructive text-destructive-foreground">
-                {dangerSubjects} At Risk
-              </Badge>
-            )}
+          <div className="space-y-3">
+            <div className="space-y-2">
+              {safeSubjects > 0 && (
+                <div className="flex items-center gap-2">
+                  <Badge className="bg-success text-success-foreground">
+                    {safeSubjects} Safe
+                  </Badge>
+                  <span className="text-xs text-muted-foreground">Above target attendance</span>
+                </div>
+              )}
+              {warningSubjects > 0 && (
+                <div className="flex items-center gap-2">
+                  <Badge className="bg-warning text-warning-foreground">
+                    {warningSubjects} Warning
+                  </Badge>
+                  <span className="text-xs text-muted-foreground">Below target but above 85%</span>
+                </div>
+              )}
+              {dangerSubjects > 0 && (
+                <div className="flex items-center gap-2">
+                  <Badge className="bg-destructive text-destructive-foreground">
+                    {dangerSubjects} At Risk
+                  </Badge>
+                  <span className="text-xs text-muted-foreground">May not get condonation</span>
+                </div>
+              )}
+            </div>
+            
+            {/* Overall Status Description */}
+            <div className="pt-2 border-t border-border">
+              {status === 'safe' && (
+                <p className="text-xs text-green-600 dark:text-green-400">
+                  🎯 All subjects are on track for successful completion
+                </p>
+              )}
+              {status === 'warning' && (
+                <p className="text-xs text-amber-600 dark:text-amber-400">
+                  📚 Some subjects need attention to reach target attendance
+                </p>
+              )}
+              {status === 'danger' && (
+                <p className="text-xs text-red-600 dark:text-red-400">
+                  🚨 Immediate action required to avoid academic penalties
+                </p>
+              )}
+            </div>
           </div>
-          <p className="text-xs text-muted-foreground mt-2">
-            Subject status breakdown
-          </p>
         </CardContent>
       </Card>
 
