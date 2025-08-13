@@ -16,6 +16,7 @@ export interface AttendanceCalculation {
   maxAbsencesBySafeThreshold: number;
   allowedBunksRemaining: number;
   classesToAttendForTarget: number;
+  classesToAttendFor85Percent: number;
   warningLevel: 'safe' | 'warning' | 'danger';
 }
 

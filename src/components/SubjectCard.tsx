@@ -122,9 +122,9 @@ export function SubjectCard({ subject, settings, onUpdate, onDelete }: SubjectCa
               </div>
             </div>
             <div className="space-y-1">
-              <div className="text-muted-foreground">To Target</div>
+              <div className="text-muted-foreground">To 85% Safe</div>
               <div className="font-semibold text-lg">
-                {calculation.classesToAttendForTarget} classes
+                {calculation.classesToAttendFor85Percent} classes
               </div>
             </div>
           </div>

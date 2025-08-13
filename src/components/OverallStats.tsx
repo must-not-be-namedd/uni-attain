@@ -66,17 +66,20 @@ export function OverallStats({ subjects, settings }: OverallStatsProps) {
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold text-primary">{totalBunksAllowed}</div>
-          <div className="space-y-1">
+          <div className="space-y-2">
             <p className="text-xs text-muted-foreground">
-              Classes you can safely miss
+              Classes you can bunk while staying ≥85%
             </p>
+            <div className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-md border border-primary/20">
+              📋 Safe bunks calculated with 85% as minimum threshold
+            </div>
             {totalBunksAllowed > 0 ? (
-              <div className="text-xs bg-green-100 dark:bg-green-950/20 text-green-700 dark:text-green-300 px-2 py-1 rounded">
-                ✅ You'll stay above 85% threshold
+              <div className="text-xs bg-success/20 text-success px-2 py-1 rounded-md border border-success/30">
+                ✅ Bunking {totalBunksAllowed} class{totalBunksAllowed > 1 ? 'es' : ''} keeps you safe
               </div>
             ) : (
-              <div className="text-xs bg-amber-100 dark:bg-amber-950/20 text-amber-700 dark:text-amber-300 px-2 py-1 rounded">
-                ⚠️ Any bunk may risk condonation
+              <div className="text-xs bg-warning/20 text-warning px-2 py-1 rounded-md border border-warning/30">
+                ⚠️ Any bunk may drop you below 85%
               </div>
             )}
           </div>

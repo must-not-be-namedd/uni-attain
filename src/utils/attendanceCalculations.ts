@@ -30,6 +30,13 @@ export function calculateAttendance(
     ));
   }
   
+  // Classes to attend to reach 85% safe threshold
+  const classesToAttendFor85Percent = calculateClassesToReachTarget(
+    attendedClasses,
+    totalClasses,
+    85
+  );
+  
   // Classes to attend to reach target percentage
   const classesToAttendForTarget = calculateClassesToReachTarget(
     attendedClasses,
@@ -52,6 +59,7 @@ export function calculateAttendance(
     maxAbsencesBySafeThreshold,
     allowedBunksRemaining,
     classesToAttendForTarget,
+    classesToAttendFor85Percent,
     warningLevel
   };
 }
