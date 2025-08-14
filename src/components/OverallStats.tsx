@@ -61,14 +61,17 @@ export function OverallStats({ subjects, settings }: OverallStatsProps) {
       {/* Bunks Available */}
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">Total Bunks Taken</CardTitle>
+          <CardTitle className="text-sm font-medium">Yay! You can still bunk</CardTitle>
           <Clock className="h-4 w-4 text-muted-foreground" />
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold text-primary">{totalBunksAllowed}</div>
           <div className="space-y-2">
             <p className="text-xs text-muted-foreground">
-              Total classes bunked across all subjects
+              Classes you can still skip and stay above 85%
+            </p>
+            <p className="text-xs text-accent-foreground">
+              To Reach 85% Safe You Need to attend more
             </p>
             <div className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-md border border-primary/20">
               📊 Shows actual classes missed (Total - Attended)

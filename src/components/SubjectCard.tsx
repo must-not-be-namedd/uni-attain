@@ -116,13 +116,13 @@ export function SubjectCard({ subject, settings, onUpdate, onDelete }: SubjectCa
           {/* Quick Stats */}
           <div className="grid grid-cols-2 gap-3 text-sm">
             <div className="space-y-1">
-              <div className="text-muted-foreground">Bunks Taken</div>
+              <div className="text-muted-foreground">You Can Bunk To Still Be Above 85%</div>
               <div className="font-semibold text-lg">
                 {calculation.allowedBunksRemaining}
               </div>
             </div>
             <div className="space-y-1">
-              <div className="text-muted-foreground">To 85% Safe</div>
+              <div className="text-muted-foreground">To Reach 85% Safe You Need to attend more</div>
               <div className="font-semibold text-lg">
                 {calculation.classesToAttendFor85Percent} classes
               </div>
