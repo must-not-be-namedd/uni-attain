@@ -138,7 +138,7 @@ export function AdvancedFeaturesTab({
           {/* Direct Feature Grid - All features listed directly */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Bunk Forecast */}
-            <div className="tour-bunk-forecast">
+            <div className="tour-bunk-forecast border-2 border-purple-500/50 rounded-lg p-1">
               {metrics && (
                 <BunkForecastCard
                   forecast={metrics.forecast}
@@ -150,7 +150,7 @@ export function AdvancedFeaturesTab({
             </div>
 
             {/* Reverse Calculator */}
-            <div className="tour-reverse-calculator">
+            <div className="tour-reverse-calculator border-2 border-blue-500/50 rounded-lg p-1">
               <ReverseCalculator
                 totalClasses={selectedSubject.totalClasses}
                 attendedClasses={selectedSubject.attendedClasses}
@@ -160,7 +160,7 @@ export function AdvancedFeaturesTab({
             </div>
 
             {/* Safe Buffer Slider */}
-            <div className="tour-safe-buffer">
+            <div className="tour-safe-buffer border-2 border-green-500/50 rounded-lg p-1">
               {metrics && (
                 <SafeBufferSlider
                   currentPercentage={metrics.currentPercentage}
@@ -171,15 +171,17 @@ export function AdvancedFeaturesTab({
             </div>
 
             {/* CIE Panic Button */}
-            <CIEPanicButton
-              totalClasses={selectedSubject.totalClasses}
-              attendedClasses={selectedSubject.attendedClasses}
-              targetPercentage={customTargetPercentage}
-              classesPerWeek={settings.weeklyClasses || 3}
-            />
+            <div className="border-2 border-red-500/50 rounded-lg p-1">
+              <CIEPanicButton
+                totalClasses={selectedSubject.totalClasses}
+                attendedClasses={selectedSubject.attendedClasses}
+                targetPercentage={customTargetPercentage}
+                classesPerWeek={settings.weeklyClasses || 3}
+              />
+            </div>
 
             {/* Group Bunk Planner */}
-            <div className="tour-group-planner">
+            <div className="tour-group-planner border-2 border-orange-500/50 rounded-lg p-1">
               <GroupBunkPlanner
                 subjects={subjects}
                 targetPercentage={customTargetPercentage}
@@ -187,7 +189,7 @@ export function AdvancedFeaturesTab({
             </div>
 
             {/* Life Event Planner */}
-            <div className="tour-life-planner">
+            <div className="tour-life-planner border-2 border-indigo-500/50 rounded-lg p-1">
               <LifeEventPlanner
                 totalClasses={selectedSubject.totalClasses}
                 attendedClasses={selectedSubject.attendedClasses}
@@ -197,10 +199,12 @@ export function AdvancedFeaturesTab({
             </div>
 
             {/* Weekly Roast Report */}
-            <WeeklyRoastReport metrics={weeklyMetrics} />
+            <div className="border-2 border-pink-500/50 rounded-lg p-1">
+              <WeeklyRoastReport metrics={weeklyMetrics} />
+            </div>
 
             {/* Quick Stats */}
-            <div className="tour-quick-stats">
+            <div className="tour-quick-stats border-2 border-cyan-500/50 rounded-lg p-1">
               <QuickStats 
                 totalClasses={selectedSubject.totalClasses}
                 attendedClasses={selectedSubject.attendedClasses}
