@@ -117,16 +117,18 @@ export function ReverseCalculator({
 
         {/* Calculation Mode */}
         <Tabs value={calculationMode} onValueChange={(value) => setCalculationMode(value as 'project' | 'target')}>
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="project" className="flex items-center gap-2">
-              <Calendar className="h-4 w-4" />
-              Project Future
-            </TabsTrigger>
-            <TabsTrigger value="target" className="flex items-center gap-2">
-              <Target className="h-4 w-4" />
-              Reach Target
-            </TabsTrigger>
-          </TabsList>
+          <div className="space-y-2">
+            <TabsList className="w-full flex flex-col h-auto p-1">
+              <TabsTrigger value="project" className="w-full flex items-center gap-2">
+                <Calendar className="h-4 w-4" />
+                Project Future Percentage
+              </TabsTrigger>
+              <TabsTrigger value="target" className="w-full flex items-center gap-2">
+                <Target className="h-4 w-4" />
+                Calculate Classes to Reach Target
+              </TabsTrigger>
+            </TabsList>
+          </div>
 
           <TabsContent value="project" className="space-y-4">
             <div>
@@ -134,11 +136,9 @@ export function ReverseCalculator({
               <Input
                 id="weeks"
                 type="number"
-                min="1"
-                max="52"
                 value={weeksToProject}
                 onChange={(e) => setWeeksToProject(parseInt(e.target.value) || 1)}
-                placeholder="Number of weeks"
+                placeholder="Enter any number of weeks"
               />
             </div>
           </TabsContent>
@@ -149,11 +149,10 @@ export function ReverseCalculator({
               <Input
                 id="target"
                 type="number"
-                min="0"
-                max="100"
+                step="0.1"
                 value={customTarget}
-                onChange={(e) => setCustomTarget(parseInt(e.target.value) || 85)}
-                placeholder="Target percentage"
+                onChange={(e) => setCustomTarget(parseFloat(e.target.value) || 85)}
+                placeholder="Enter target percentage (e.g., 85)"
               />
             </div>
           </TabsContent>
@@ -163,10 +162,12 @@ export function ReverseCalculator({
         <div className="space-y-4">
           <Label>Attendance Pattern</Label>
           <Tabs value={pattern.type} onValueChange={handlePatternChange}>
-            <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="weekly_count">Classes per Week</TabsTrigger>
-              <TabsTrigger value="specific_days">Specific Days</TabsTrigger>
-            </TabsList>
+            <div className="space-y-2">
+              <TabsList className="w-full flex flex-col h-auto p-1">
+                <TabsTrigger value="weekly_count" className="w-full">Classes per Week Pattern</TabsTrigger>
+                <TabsTrigger value="specific_days" className="w-full">Specific Days Pattern</TabsTrigger>
+              </TabsList>
+            </div>
 
             <TabsContent value="weekly_count" className="space-y-4">
               <div>
@@ -174,14 +175,12 @@ export function ReverseCalculator({
                 <Input
                   id="weekly-classes"
                   type="number"
-                  min="0"
-                  max={classesPerWeek}
                   value={pattern.classesPerWeek || 0}
                   onChange={(e) => setPattern({
                     ...pattern,
                     classesPerWeek: parseInt(e.target.value) || 0
                   })}
-                  placeholder="Number of classes"
+                  placeholder="Classes you'll attend per week"
                 />
               </div>
             </TabsContent>

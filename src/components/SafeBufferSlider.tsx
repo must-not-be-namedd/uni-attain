@@ -140,14 +140,17 @@ export function SafeBufferSlider({
           </div>
         </div>
 
-        {/* Distance to Target */}
+        {/* Classes to Target */}
         <div className="p-3 border rounded-lg">
           <div className="flex justify-between items-center">
-            <span className="text-sm text-muted-foreground">Distance to target:</span>
+            <span className="text-sm text-muted-foreground">Classes to reach target:</span>
             <span className={`font-semibold ${
               currentPercentage >= targetPercentage ? 'text-success' : 'text-destructive'
             }`}>
-              {currentPercentage >= targetPercentage ? '+' : ''}{(currentPercentage - targetPercentage).toFixed(1)}%
+              {currentPercentage >= targetPercentage ? 
+                'Target achieved! 🎉' : 
+                `${Math.ceil((targetPercentage - currentPercentage) * 10)} classes needed`
+              }
             </span>
           </div>
         </div>

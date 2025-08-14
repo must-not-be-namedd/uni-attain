@@ -5,63 +5,58 @@
 /* Dark Mode First Design System */
 @layer base {
   :root {
-    /* Dark theme - greyish background with refined colors */
-    --background: 240 6% 12%; /* Greyish background */
-    --foreground: 240 5% 95%;
-    --card: 240 5% 16%; /* Slightly lighter grey for cards */
-    --card-foreground: 240 5% 95%;
-    --popover: 240 5% 14%;
-    --popover-foreground: 240 5% 95%;
-    --primary: 200 40% 65%; /* Toned down light blue #8DBCCC */
-    --primary-foreground: 240 6% 12%;
-    --primary-glow: 200 40% 75%;
-    --secondary: 220 35% 50%; /* Refined darker blue #4C6793 */
-    --secondary-foreground: 240 5% 95%;
-    --muted: 240 5% 20%;
-    --muted-foreground: 240 4% 65%;
-    --accent: 270 40% 45%; /* Refined purple #5C2E7E */
-    --accent-foreground: 240 5% 95%;
+    /* Core Theme Colors - Greyish Background */
+    --background: 220 8% 12%;
+    --foreground: 220 12% 92%;
+    
+    /* Surface Colors */
+    --card: 220 10% 15%;
+    --card-foreground: 220 12% 92%;
+    --popover: 220 10% 15%;
+    --popover-foreground: 220 12% 92%;
+    --muted: 220 8% 18%;
+    --muted-foreground: 220 8% 68%;
+    
+    /* Primary Brand - Toned Down Purple/Blue */
+    --primary: 240 45% 65%;
+    --primary-foreground: 220 12% 95%;
+    --primary-hover: 240 45% 72%;
+    --primary-glow: 240 45% 78%;
+    
+    /* Secondary - Subtle Blue */
+    --secondary: 210 25% 45%;
+    --secondary-foreground: 220 12% 95%;
+    
+    /* Accent - Muted Purple */
+    --accent: 260 25% 45%;
+    --accent-foreground: 220 12% 95%;
+    
+    /* Status Colors */
+    --success: 142 50% 50%;
+    --success-foreground: 220 12% 95%;
+    --warning: 38 80% 55%;
+    --warning-foreground: 220 8% 12%;
     --destructive: 0 55% 45%;
-    --destructive-foreground: 0 85% 97%;
-    --border: 240 5% 22%;
-    --input: 240 5% 18%;
-    --ring: 200 40% 65%;
+    --destructive-foreground: 220 12% 95%;
+    
+    /* Interactive Elements */
+    --border: 220 10% 22%;
+    --input: 220 10% 22%;
+    --ring: 240 45% 65%;
     --radius: 0.75rem;
     
-    /* Status colors */
-    --success: 142 60% 45%;
-    --success-foreground: 355 100% 97%;
-    --warning: 48 80% 55%;
-    --warning-foreground: 20 14% 4%;
+    /* Gradients - Subtle and Professional */
+    --gradient-primary: linear-gradient(135deg, hsl(240, 45%, 65%), hsl(240, 45%, 78%));
+    --gradient-secondary: linear-gradient(135deg, hsl(210, 25%, 45%), hsl(240, 25%, 50%));
+    --gradient-surface: linear-gradient(180deg, hsl(220, 10%, 15%), hsl(220, 8%, 12%));
     
-    /* Shadows - very subtle */
-    --shadow-elegant: 0 8px 24px -8px hsl(200 40% 65% / 0.15);
-    --shadow-glow: 0 0 32px hsl(200 40% 65% / 0.1);
-    --shadow-card: 0 4px 6px -1px hsl(240 5% 8% / 0.25);
+    /* Shadows - Softer */
+    --shadow-primary: 0 8px 25px -8px hsl(240 45% 65% / 0.2);
+    --shadow-secondary: 0 3px 15px -3px hsl(220 10% 15% / 0.3);
+    --shadow-glow: 0 0 30px hsl(240 45% 78% / 0.15);
     
-    /* Animations */
+    /* Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --animation-glow: glow 2s ease-in-out infinite alternate;
-    
-    /* Gradients - subtle and refined */
-    --gradient-primary: linear-gradient(135deg, hsl(200, 40%, 65%), hsl(220, 35%, 50%));
-    --gradient-secondary: linear-gradient(135deg, hsl(220, 35%, 50%), hsl(270, 40%, 45%));
-    --gradient-subtle: linear-gradient(180deg, hsl(240, 5%, 16%), hsl(240, 6%, 12%));
-    --gradient-warning: linear-gradient(135deg, hsl(45 93% 55%), hsl(38 92% 50%));
-    --gradient-danger: linear-gradient(135deg, hsl(0 84% 60%), hsl(10 87% 65%));
-    --gradient-cool: linear-gradient(135deg, hsl(188 94% 58%), hsl(262 83% 58%));
-    --gradient-hero: linear-gradient(135deg, hsl(262 83% 58%) 0%, hsl(217 91% 60%) 50%, hsl(188 94% 58%) 100%);
-    
-    /* Dark-friendly shadows */
-    --shadow-elegant: 0 10px 30px -10px hsl(262 83% 58% / 0.4);
-    --shadow-glow: 0 0 40px hsl(262 83% 58% / 0.3);
-    --shadow-card: 0 8px 32px -8px hsl(222 84% 3% / 0.8);
-    --shadow-intense: 0 20px 60px -10px hsl(262 83% 58% / 0.5);
-    
-    /* Smooth transitions */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    --transition-spring: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
 
   .light {

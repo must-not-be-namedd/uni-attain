@@ -7,7 +7,7 @@ import { CIEPanicButton } from './CIEPanicButton';
 import { GroupBunkPlanner } from './GroupBunkPlanner';
 import { LifeEventPlanner } from './LifeEventPlanner';
 import { WeeklyRoastReport } from './WeeklyRoastReport';
-import { AchievementBadges } from './AchievementBadges';
+import { QuickStats } from './QuickStats';
 import { Subject, AttendanceSettings } from '@/types/attendance';
 import { 
   calculateBunkForecast, 
@@ -189,8 +189,12 @@ export function AdvancedFeaturesTab({
             {/* Weekly Roast Report */}
             <WeeklyRoastReport metrics={weeklyMetrics} />
 
-            {/* Achievement Badges */}
-            <AchievementBadges achievements={achievements} />
+            {/* Quick Stats */}
+            <QuickStats 
+              totalClasses={selectedSubject.totalClasses}
+              attendedClasses={selectedSubject.attendedClasses}
+              currentPercentage={metrics?.currentPercentage || 0}
+            />
           </div>
         </div>
       )}

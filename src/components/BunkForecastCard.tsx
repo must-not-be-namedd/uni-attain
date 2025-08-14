@@ -62,9 +62,9 @@ export function BunkForecastCard({
           </div>
           <p className="text-sm text-muted-foreground mb-2">{memeStatus.message}</p>
           <div className="flex items-center gap-2">
-            <span className="text-sm">Distance from target:</span>
+            <span className="text-sm">Classes to reach target:</span>
             <Badge variant={memeStatus.distance >= 0 ? "secondary" : "destructive"}>
-              {memeStatus.distance >= 0 ? '+' : ''}{memeStatus.distance.toFixed(1)}%
+              {memeStatus.distance >= 0 ? 'Already there!' : `${Math.ceil(Math.abs(memeStatus.distance * currentPercentage / 100))} classes`}
             </Badge>
           </div>
         </div>
