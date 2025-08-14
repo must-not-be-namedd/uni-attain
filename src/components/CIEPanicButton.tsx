@@ -101,8 +101,9 @@ export function CIEPanicButton({
               <Input
                 id="custom-total"
                 type="number"
+                min="0"
                 value={customTotalClasses}
-                onChange={(e) => setCustomTotalClasses(parseInt(e.target.value) || totalClasses)}
+                onChange={(e) => setCustomTotalClasses(Math.max(0, parseInt(e.target.value) || 0))}
                 placeholder="Current total classes"
               />
             </div>
@@ -133,10 +134,11 @@ export function CIEPanicButton({
               <Input
                 id="total-classes"
                 type="number"
+                min="0"
                 value={newCheckpoint.totalClassesExpected}
                 onChange={(e) => setNewCheckpoint({
                   ...newCheckpoint,
-                  totalClassesExpected: parseInt(e.target.value) || customTotalClasses
+                  totalClassesExpected: Math.max(0, parseInt(e.target.value) || 0)
                 })}
                 placeholder="Enter expected total classes"
               />

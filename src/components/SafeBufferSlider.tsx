@@ -149,7 +149,16 @@ export function SafeBufferSlider({
             }`}>
               {currentPercentage >= targetPercentage ? 
                 'Target achieved! 🎉' : 
-                `${Math.ceil((targetPercentage - currentPercentage) * 10)} classes needed`
+                (() => {
+                  // Calculate remaining classes needed using proper math
+                  // Formula: Need to reach (targetPercentage * totalClasses) / 100 total attended classes
+                  // We need: targetClasses - currentAttended = remaining
+                  const totalClasses = 100; // Assuming 100 total classes for calculation
+                  const currentAttended = (currentPercentage * totalClasses) / 100;
+                  const targetClassesNeeded = (targetPercentage * totalClasses) / 100;
+                  const remainingNeeded = Math.ceil(targetClassesNeeded - currentAttended);
+                  return `${remainingNeeded} more classes needed`;
+                })()
               }
             </span>
           </div>

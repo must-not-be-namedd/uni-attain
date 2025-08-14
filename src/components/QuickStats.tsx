@@ -20,10 +20,10 @@ export function QuickStats({
   const thisWeekAttended = Math.min(attendedClasses, 5); // Assume max 5 classes per week
 
   const getPerformanceLevel = () => {
-    if (currentPercentage >= 95) return { level: 'Excellent', color: 'bg-success text-success-foreground' };
-    if (currentPercentage >= 85) return { level: 'Good', color: 'bg-primary text-primary-foreground' };
-    if (currentPercentage >= 75) return { level: 'Average', color: 'bg-warning text-warning-foreground' };
-    return { level: 'Needs Work', color: 'bg-destructive text-destructive-foreground' };
+    if (currentPercentage >= 95) return { level: 'Attendance God 🙏', color: 'bg-success text-success-foreground' };
+    if (currentPercentage >= 85) return { level: 'Solid Student 📚', color: 'bg-primary text-primary-foreground' };
+    if (currentPercentage >= 75) return { level: 'Playing with Fire 🔥', color: 'bg-warning text-warning-foreground' };
+    return { level: 'Bunking Champion 😅', color: 'bg-destructive text-destructive-foreground' };
   };
 
   const performance = getPerformanceLevel();
@@ -86,9 +86,13 @@ export function QuickStats({
         {/* Quick Insights */}
         <div className="p-3 rounded-lg bg-primary/10 border border-primary/20">
           <p className="text-sm text-primary font-medium">
-            {currentPercentage >= 85 
-              ? "🎉 You're doing great! Keep it up!" 
-              : `💪 Need ${Math.ceil((85 - currentPercentage) * totalClasses / 100)} more classes to reach 85%`
+            {currentPercentage >= 95 
+              ? "🏆 Perfect attendance! Are you even human?" 
+              : currentPercentage >= 85 
+                ? "🎉 You're crushing it! Your future self thanks you!" 
+                : currentPercentage >= 75
+                  ? "⚠️ Walking the tightrope! Time to show up more often!"
+                  : "🚨 Danger zone! Your attendance needs CPR!"
             }
           </p>
         </div>
