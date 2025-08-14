@@ -71,90 +71,28 @@ export function AttendanceDashboard() {
         {/* Feature Showcase */}
         <FeatureShowcase />
 
+        {/* Get Started Button */}
+        <div className="text-center">
+          <StickyNote color="green" size="md" className="mx-auto">
+            <div className="text-center space-y-4">
+              <h3 className="text-xl font-bold">Ready to Master Your Attendance?</h3>
+              <p className="text-sm">Start tracking and planning your bunks like a pro!</p>
+              <Button 
+                onClick={() => window.location.href = '/app'}
+                className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-200"
+                size="lg"
+              >
+                🚀 Get Started Now
+              </Button>
+            </div>
+          </StickyNote>
+        </div>
+
         {/* Overall Stats */}
         {subjects.length > 0 && (
           <div className="tour-overall-stats">
             <OverallStats subjects={subjects} settings={settings} />
           </div>
-        )}
-
-        {/* Main Content */}
-        <StickyNote color="periwinkle" size="full" className="mx-auto">
-          <Tabs defaultValue="subjects" className="space-y-6">
-            <TabsList className="w-full max-w-md mx-auto grid grid-cols-2">
-              <TabsTrigger value="subjects" className="tour-subjects-tab flex items-center gap-2">
-                <BookOpen className="h-4 w-4" />
-                Subjects
-              </TabsTrigger>
-              <TabsTrigger value="advanced" className="tour-advanced-tab flex items-center gap-2">
-                <Zap className="h-4 w-4" />
-                Advanced Features
-              </TabsTrigger>
-            </TabsList>
-
-            <TabsContent value="subjects" className="space-y-6">
-              <div className="text-center mb-4">
-                <h2 className="text-xl font-bold mb-2">📚 Your Subjects</h2>
-                <p className="text-sm text-gray-700 mb-4">Track attendance for each subject individually</p>
-                <Button 
-                  onClick={() => setIsAddDialogOpen(true)}
-                  className="flex items-center gap-2 mx-auto"
-                  size="sm"
-                >
-                  <Plus className="h-4 w-4" />
-                  Add Subject
-                </Button>
-              </div>
-              
-              {subjects.length === 0 ? (
-                <div className="text-center py-8 space-y-4">
-                  <BookOpen className="h-8 w-8 mx-auto text-gray-600 opacity-50" />
-                  <div>
-                    <h3 className="text-lg font-medium text-gray-700">No subjects yet</h3>
-                    <p className="text-sm text-gray-600">
-                      Add your first subject to start tracking attendance
-                    </p>
-                  </div>
-                </div>
-              ) : (
-                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                  {subjects.map((subject) => (
-                    <SubjectCard
-                      key={subject.id}
-                      subject={subject}
-                      settings={settings}
-                      onUpdate={updateSubject}
-                      onDelete={deleteSubject}
-                    />
-                  ))}
-                </div>
-              )}
-            </TabsContent>
-
-            <TabsContent value="advanced">
-              <AdvancedFeaturesTab 
-                subjects={subjects}
-                settings={settings}
-                onSettingsChange={setSettings}
-              />
-            </TabsContent>
-          </Tabs>
-        </StickyNote>
-
-        {/* Dialogs */}
-        <AddSubjectDialog
-          open={isAddDialogOpen}
-          onOpenChange={setIsAddDialogOpen}
-          onAdd={addSubject}
-        />
-
-        {editingSubject && (
-          <EditSubjectDialog
-            subject={editingSubject}
-            open={true}
-            onOpenChange={(open) => !open && setEditingSubject(null)}
-            onUpdate={updateSubject}
-          />
         )}
 
         {/* Tour Guide */}
