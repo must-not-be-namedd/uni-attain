@@ -136,128 +136,76 @@ export function AdvancedFeaturesTab({
       ) : (
         <div className="space-y-6">
           {/* Direct Feature Grid - All features listed directly */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-            {/* Bunk Forecast - Purple Theme */}
-            <div className="tour-bunk-forecast relative group">
-              <div className="relative bg-card/50 backdrop-blur-sm border rounded-xl p-6 transition-all duration-300 hover:shadow-lg shadow-purple-500/20 hover:shadow-purple-500/40 border-purple-500/30 hover:border-purple-400/50">
-                <div className="flex items-center gap-2 mb-4">
-                  <TrendingUp className="h-5 w-5 text-purple-400" />
-                  <span className="text-sm font-medium text-purple-300">Bunk Forecast</span>
-                </div>
-                {metrics && (
-                  <BunkForecastCard
-                    forecast={metrics.forecast}
-                    memeStatus={metrics.memeStatus}
-                    currentPercentage={metrics.currentPercentage}
-                    targetPercentage={customTargetPercentage}
-                  />
-                )}
-              </div>
-            </div>
-
-            {/* Reverse Calculator - Blue Theme */}
-            <div className="tour-reverse-calculator relative group">
-              <div className="relative bg-card/50 backdrop-blur-sm border rounded-xl p-6 transition-all duration-300 hover:shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 border-blue-500/30 hover:border-blue-400/50">
-                <div className="flex items-center gap-2 mb-4">
-                  <Calculator className="h-5 w-5 text-blue-400" />
-                  <span className="text-sm font-medium text-blue-300">Reverse Calculator</span>
-                </div>
-                <ReverseCalculator
-                  totalClasses={selectedSubject.totalClasses}
-                  attendedClasses={selectedSubject.attendedClasses}
-                  classesPerWeek={settings.weeklyClasses || 3}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Bunk Forecast */}
+            <div className="tour-bunk-forecast">
+              {metrics && (
+                <BunkForecastCard
+                  forecast={metrics.forecast}
+                  memeStatus={metrics.memeStatus}
+                  currentPercentage={metrics.currentPercentage}
                   targetPercentage={customTargetPercentage}
                 />
-              </div>
+              )}
             </div>
 
-            {/* Safe Buffer Slider - Green Theme */}
-            <div className="tour-safe-buffer relative group">
-              <div className="relative bg-card/50 backdrop-blur-sm border rounded-xl p-6 transition-all duration-300 hover:shadow-lg shadow-green-500/20 hover:shadow-green-500/40 border-green-500/30 hover:border-green-400/50">
-                <div className="flex items-center gap-2 mb-4">
-                  <Shield className="h-5 w-5 text-green-400" />
-                  <span className="text-sm font-medium text-green-300">Safe Buffer</span>
-                </div>
-                {metrics && (
-                  <SafeBufferSlider
-                    currentPercentage={metrics.currentPercentage}
-                    targetPercentage={customTargetPercentage}
-                    onTargetChange={setCustomTargetPercentage}
-                  />
-                )}
-              </div>
+            {/* Reverse Calculator */}
+            <div className="tour-reverse-calculator">
+              <ReverseCalculator
+                totalClasses={selectedSubject.totalClasses}
+                attendedClasses={selectedSubject.attendedClasses}
+                classesPerWeek={settings.weeklyClasses || 3}
+                targetPercentage={customTargetPercentage}
+              />
             </div>
 
-            {/* CIE Panic Button - Red Theme */}
-            <div className="relative group">
-              <div className="relative bg-card/50 backdrop-blur-sm border rounded-xl p-6 transition-all duration-300 hover:shadow-lg shadow-red-500/20 hover:shadow-red-500/40 border-red-500/30 hover:border-red-400/50">
-                <div className="flex items-center gap-2 mb-4">
-                  <AlertCircle className="h-5 w-5 text-red-400" />
-                  <span className="text-sm font-medium text-red-300">CIE Panic Mode</span>
-                </div>
-                <CIEPanicButton
-                  totalClasses={selectedSubject.totalClasses}
-                  attendedClasses={selectedSubject.attendedClasses}
+            {/* Safe Buffer Slider */}
+            <div className="tour-safe-buffer">
+              {metrics && (
+                <SafeBufferSlider
+                  currentPercentage={metrics.currentPercentage}
                   targetPercentage={customTargetPercentage}
-                  classesPerWeek={settings.weeklyClasses || 3}
+                  onTargetChange={setCustomTargetPercentage}
                 />
-              </div>
+              )}
             </div>
 
-            {/* Group Bunk Planner - Orange Theme */}
-            <div className="tour-group-planner relative group">
-              <div className="relative bg-card/50 backdrop-blur-sm border rounded-xl p-6 transition-all duration-300 hover:shadow-lg shadow-orange-500/20 hover:shadow-orange-500/40 border-orange-500/30 hover:border-orange-400/50">
-                <div className="flex items-center gap-2 mb-4">
-                  <Users className="h-5 w-5 text-orange-400" />
-                  <span className="text-sm font-medium text-orange-300">Group Planner</span>
-                </div>
-                <GroupBunkPlanner
-                  subjects={subjects}
-                  targetPercentage={customTargetPercentage}
-                />
-              </div>
+            {/* CIE Panic Button */}
+            <CIEPanicButton
+              totalClasses={selectedSubject.totalClasses}
+              attendedClasses={selectedSubject.attendedClasses}
+              targetPercentage={customTargetPercentage}
+              classesPerWeek={settings.weeklyClasses || 3}
+            />
+
+            {/* Group Bunk Planner */}
+            <div className="tour-group-planner">
+              <GroupBunkPlanner
+                subjects={subjects}
+                targetPercentage={customTargetPercentage}
+              />
             </div>
 
-            {/* Life Event Planner - Indigo Theme */}
-            <div className="tour-life-planner relative group">
-              <div className="relative bg-card/50 backdrop-blur-sm border rounded-xl p-6 transition-all duration-300 hover:shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/40 border-indigo-500/30 hover:border-indigo-400/50">
-                <div className="flex items-center gap-2 mb-4">
-                  <Calendar className="h-5 w-5 text-indigo-400" />
-                  <span className="text-sm font-medium text-indigo-300">Life Events</span>
-                </div>
-                <LifeEventPlanner
-                  totalClasses={selectedSubject.totalClasses}
-                  attendedClasses={selectedSubject.attendedClasses}
-                  targetPercentage={customTargetPercentage}
-                  classesPerWeek={settings.weeklyClasses || 3}
-                />
-              </div>
+            {/* Life Event Planner */}
+            <div className="tour-life-planner">
+              <LifeEventPlanner
+                totalClasses={selectedSubject.totalClasses}
+                attendedClasses={selectedSubject.attendedClasses}
+                targetPercentage={customTargetPercentage}
+                classesPerWeek={settings.weeklyClasses || 3}
+              />
             </div>
 
-            {/* Weekly Roast Report - Pink Theme */}
-            <div className="relative group">
-              <div className="relative bg-card/50 backdrop-blur-sm border rounded-xl p-6 transition-all duration-300 hover:shadow-lg shadow-pink-500/20 hover:shadow-pink-500/40 border-pink-500/30 hover:border-pink-400/50">
-                <div className="flex items-center gap-2 mb-4">
-                  <MessageSquare className="h-5 w-5 text-pink-400" />
-                  <span className="text-sm font-medium text-pink-300">Weekly Roast</span>
-                </div>
-                <WeeklyRoastReport metrics={weeklyMetrics} />
-              </div>
-            </div>
+            {/* Weekly Roast Report */}
+            <WeeklyRoastReport metrics={weeklyMetrics} />
 
-            {/* Quick Stats - Cyan Theme */}
-            <div className="tour-quick-stats relative group">
-              <div className="relative bg-card/50 backdrop-blur-sm border rounded-xl p-6 transition-all duration-300 hover:shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40 border-cyan-500/30 hover:border-cyan-400/50">
-                <div className="flex items-center gap-2 mb-4">
-                  <Trophy className="h-5 w-5 text-cyan-400" />
-                  <span className="text-sm font-medium text-cyan-300">Quick Stats</span>
-                </div>
-                <QuickStats 
-                  totalClasses={selectedSubject.totalClasses}
-                  attendedClasses={selectedSubject.attendedClasses}
-                  currentPercentage={metrics?.currentPercentage || 0}
-                />
-              </div>
+            {/* Quick Stats */}
+            <div className="tour-quick-stats">
+              <QuickStats 
+                totalClasses={selectedSubject.totalClasses}
+                attendedClasses={selectedSubject.attendedClasses}
+                currentPercentage={metrics?.currentPercentage || 0}
+              />
             </div>
           </div>
         </div>

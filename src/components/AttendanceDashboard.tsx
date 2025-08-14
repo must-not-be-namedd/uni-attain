@@ -72,19 +72,18 @@ export function AttendanceDashboard() {
         <FeatureShowcase />
 
         {/* Get Started Button */}
-        <div className="text-center my-8">
-          <StickyNote color="green" size="lg" className="mx-auto">
+        <div className="text-center">
+          <StickyNote color="green" size="md" className="mx-auto">
             <div className="text-center space-y-4">
-              <h3 className="text-2xl font-bold">🎯 Ready to Master Your Attendance?</h3>
-              <p className="text-base">Start tracking and planning your bunks like a pro!</p>
+              <h3 className="text-xl font-bold">Ready to Master Your Attendance?</h3>
+              <p className="text-sm">Start tracking and planning your bunks like a pro!</p>
               <Button 
                 onClick={() => window.location.href = '/app'}
-                className="bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-8 rounded-xl shadow-lg transform hover:scale-105 transition-all duration-300 text-lg"
+                className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-200"
                 size="lg"
               >
                 🚀 Get Started Now
               </Button>
-              <p className="text-xs text-green-700 mt-2">Click to enter the full app experience</p>
             </div>
           </StickyNote>
         </div>
