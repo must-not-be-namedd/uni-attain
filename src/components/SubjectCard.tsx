@@ -116,7 +116,7 @@ export function SubjectCard({ subject, settings, onUpdate, onDelete }: SubjectCa
           {/* Quick Stats */}
           <div className="grid grid-cols-2 gap-3 text-sm">
             <div className="space-y-1">
-              <div className="text-muted-foreground">Bunks Allowed</div>
+              <div className="text-muted-foreground">Bunks Taken</div>
               <div className="font-semibold text-lg">
                 {calculation.allowedBunksRemaining}
               </div>

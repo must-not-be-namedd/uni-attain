@@ -19,16 +19,8 @@ export function calculateAttendance(
   // Max absences by safe threshold
   const maxAbsencesBySafeThreshold = totalClasses - Math.ceil((safeThreshold * totalClasses) / 100);
   
-  // Allowed bunks remaining
-  let allowedBunksRemaining;
-  if (subjectType === 'lab') {
-    allowedBunksRemaining = Math.max(0, maxAbsencesBySafeThreshold - alreadyAbsent);
-  } else {
-    allowedBunksRemaining = Math.max(0, Math.min(
-      maxAbsencesByCredit - alreadyAbsent,
-      maxAbsencesBySafeThreshold - alreadyAbsent
-    ));
-  }
+  // Total bunks taken (difference between total and attended)
+  const allowedBunksRemaining = alreadyAbsent;
   
   // Classes to attend to reach 85% safe threshold
   const classesToAttendFor85Percent = calculateClassesToReachTarget(

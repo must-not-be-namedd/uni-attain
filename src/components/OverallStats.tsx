@@ -61,25 +61,25 @@ export function OverallStats({ subjects, settings }: OverallStatsProps) {
       {/* Bunks Available */}
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">Safe Bunks Available</CardTitle>
+          <CardTitle className="text-sm font-medium">Total Bunks Taken</CardTitle>
           <Clock className="h-4 w-4 text-muted-foreground" />
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold text-primary">{totalBunksAllowed}</div>
           <div className="space-y-2">
             <p className="text-xs text-muted-foreground">
-              Classes you can bunk while staying ≥85%
+              Total classes bunked across all subjects
             </p>
             <div className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-md border border-primary/20">
-              📋 Safe bunks calculated with 85% as minimum threshold
+              📊 Shows actual classes missed (Total - Attended)
             </div>
             {totalBunksAllowed > 0 ? (
-              <div className="text-xs bg-success/20 text-success px-2 py-1 rounded-md border border-success/30">
-                ✅ Bunking {totalBunksAllowed} class{totalBunksAllowed > 1 ? 'es' : ''} keeps you safe
+              <div className="text-xs bg-primary/20 text-primary px-2 py-1 rounded-md border border-primary/30">
+                📈 You have bunked {totalBunksAllowed} class{totalBunksAllowed > 1 ? 'es' : ''} total
               </div>
             ) : (
-              <div className="text-xs bg-warning/20 text-warning px-2 py-1 rounded-md border border-warning/30">
-                ⚠️ Any bunk may drop you below 85%
+              <div className="text-xs bg-success/20 text-success px-2 py-1 rounded-md border border-success/30">
+                🎯 Perfect attendance! No classes bunked
               </div>
             )}
           </div>

@@ -42,15 +42,15 @@ export function AttendanceDashboard() {
           {/* University-style header */}
           <div className="inline-block">
             <div className="text-xs text-muted-foreground mb-1 tracking-wider uppercase">
-              Visvesvaraya Technological University
+              Smart Attendance Management
             </div>
             <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent leading-tight">
-              Student Attendance Portal
+              The grade-A Bunker
             </h1>
             <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-2 rounded-full"></div>
           </div>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Official attendance management system for VTU students to track, analyze, and optimize academic performance
+            Smart attendance management system for college students to track, analyze, and optimize academic performance
           </p>
         </div>
 
