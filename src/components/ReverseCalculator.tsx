@@ -14,13 +14,15 @@ interface ReverseCalculatorProps {
   totalClasses: number;
   attendedClasses: number;
   classesPerWeek: number;
+  targetPercentage?: number;
   className?: string;
 }
 
 export function ReverseCalculator({ 
   totalClasses, 
   attendedClasses, 
-  classesPerWeek, 
+  classesPerWeek,
+  targetPercentage = 85,
   className 
 }: ReverseCalculatorProps) {
   const [pattern, setPattern] = useState<AttendancePattern>({
@@ -29,7 +31,7 @@ export function ReverseCalculator({
     totalClassesPerWeek: classesPerWeek
   });
   const [weeksToProject, setWeeksToProject] = useState<number>(4);
-  const [targetPercentage, setTargetPercentage] = useState<number>(85);
+  const [customTarget, setCustomTarget] = useState<number>(targetPercentage);
   const [projection, setProjection] = useState<PatternProjection | null>(null);
   const [calculationMode, setCalculationMode] = useState<'project' | 'target'>('project');
 
@@ -61,7 +63,7 @@ export function ReverseCalculator({
   const calculateProjection = () => {
     const projectionInput = calculationMode === 'project' 
       ? { weeksToProject }
-      : { targetPercentage };
+      : { targetPercentage: customTarget };
     
     const result = calculatePatternProjection(
       totalClasses,
@@ -69,7 +71,7 @@ export function ReverseCalculator({
       0.85, // Default threshold for calculations
       pattern,
       calculationMode === 'project' ? weeksToProject : undefined,
-      calculationMode === 'target' ? targetPercentage : undefined
+      calculationMode === 'target' ? customTarget : undefined
     );
     
     setProjection(result);
@@ -149,8 +151,8 @@ export function ReverseCalculator({
                 type="number"
                 min="0"
                 max="100"
-                value={targetPercentage}
-                onChange={(e) => setTargetPercentage(parseInt(e.target.value) || 85)}
+                value={customTarget}
+                onChange={(e) => setCustomTarget(parseInt(e.target.value) || 85)}
                 placeholder="Target percentage"
               />
             </div>
@@ -235,7 +237,7 @@ export function ReverseCalculator({
                   </div>
                   <div className="p-3 bg-muted/50 rounded-lg">
                     <span className="text-sm text-muted-foreground">Final Percentage</span>
-                    <p className={`text-lg font-semibold ${getResultColor(projection.finalPercentage, targetPercentage)}`}>
+                    <p className={`text-lg font-semibold ${getResultColor(projection.finalPercentage, customTarget)}`}>
                       {projection.finalPercentage.toFixed(1)}%
                     </p>
                   </div>

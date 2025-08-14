@@ -101,22 +101,14 @@ export function AttendanceDashboard() {
         {/* Feature Tabs */}
         <div className="mt-12 animate-fade-in" style={{ animationDelay: '0.4s' }}>
           <Tabs defaultValue="subjects" className="space-y-6">
-            <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 bg-card/50 backdrop-blur-sm border border-border/50">
+            <TabsList className="grid w-full grid-cols-2 bg-card/50 backdrop-blur-sm border border-border/50">
               <TabsTrigger value="subjects" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
                 <Calendar className="w-4 h-4 mr-2" />
                 Subjects
               </TabsTrigger>
               <TabsTrigger value="advanced" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
                 <Sparkles className="w-4 h-4 mr-2" />
-                Advanced
-              </TabsTrigger>
-              <TabsTrigger value="analytics" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
-                <TrendingUp className="w-4 h-4 mr-2" />
-                Analytics
-              </TabsTrigger>
-              <TabsTrigger value="planner" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
-                <Users className="w-4 h-4 mr-2" />
-                Planner
+                Advanced Features
               </TabsTrigger>
             </TabsList>
 
@@ -188,21 +180,6 @@ export function AttendanceDashboard() {
               />
             </TabsContent>
 
-            <TabsContent value="analytics">
-              <div className="glass-effect p-8 rounded-2xl border border-border/50 text-center">
-                <TrendingUp className="w-16 h-16 mx-auto mb-4 text-purple-400" />
-                <h3 className="text-2xl font-bold gradient-text mb-2">Advanced Analytics</h3>
-                <p className="text-muted-foreground">Coming soon with detailed insights and predictions</p>
-              </div>
-            </TabsContent>
-
-            <TabsContent value="planner">
-              <div className="glass-effect p-8 rounded-2xl border border-border/50 text-center">
-                <Users className="w-16 h-16 mx-auto mb-4 text-cyan-400" />
-                <h3 className="text-2xl font-bold gradient-text mb-2">Group Planner</h3>
-                <p className="text-muted-foreground">Coordinate with friends for optimal attendance strategies</p>
-              </div>
-            </TabsContent>
           </Tabs>
         </div>
 

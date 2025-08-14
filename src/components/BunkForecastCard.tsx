@@ -9,6 +9,7 @@ interface BunkForecastCardProps {
   forecast: BunkForecast;
   memeStatus: MemeStatus;
   currentPercentage: number;
+  targetPercentage?: number;
   className?: string;
 }
 
@@ -16,6 +17,7 @@ export function BunkForecastCard({
   forecast, 
   memeStatus, 
   currentPercentage,
+  targetPercentage = 85,
   className 
 }: BunkForecastCardProps) {
   const getSeverityColor = (severity: string) => {

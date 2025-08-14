@@ -28,13 +28,14 @@ export function CIEPanicButton({
     name: '',
     totalClassesExpected: totalClasses + 20
   });
+  const [customTotalClasses, setCustomTotalClasses] = useState(totalClasses);
 
   const addCheckpoint = () => {
     if (!newCheckpoint.name.trim()) return;
 
     const checkpoint = calculateCIECheckpoint(
       attendedClasses,
-      totalClasses,
+      customTotalClasses,
       targetPercentage / 100,
       classesPerWeek,
       newCheckpoint.totalClassesExpected,
@@ -44,7 +45,7 @@ export function CIEPanicButton({
     setCheckpoints([...checkpoints, checkpoint]);
     setNewCheckpoint({
       name: '',
-      totalClassesExpected: totalClasses + 20
+      totalClassesExpected: customTotalClasses + 20
     });
   };
 
@@ -78,20 +79,35 @@ export function CIEPanicButton({
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
-        {/* Current Status */}
-        <div className="p-4 bg-muted/50 rounded-lg">
-          <div className="grid grid-cols-3 gap-4 text-sm">
+        {/* Current Status & Custom Inputs */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="p-4 bg-muted/50 rounded-lg">
+            <h4 className="font-medium mb-3">Current Status</h4>
+            <div className="grid grid-cols-2 gap-4 text-sm">
+              <div>
+                <span className="text-muted-foreground">Current</span>
+                <p className="font-semibold">{((attendedClasses / customTotalClasses) * 100).toFixed(1)}%</p>
+              </div>
+              <div>
+                <span className="text-muted-foreground">Attended</span>
+                <p className="font-semibold">{attendedClasses}/{customTotalClasses}</p>
+              </div>
+            </div>
+          </div>
+          
+          <div className="space-y-3">
             <div>
-              <span className="text-muted-foreground">Current</span>
-              <p className="font-semibold">{((attendedClasses / totalClasses) * 100).toFixed(1)}%</p>
+              <Label htmlFor="custom-total">Total Classes</Label>
+              <Input
+                id="custom-total"
+                type="number"
+                min="1"
+                value={customTotalClasses}
+                onChange={(e) => setCustomTotalClasses(parseInt(e.target.value) || totalClasses)}
+              />
             </div>
             <div>
-              <span className="text-muted-foreground">Attended</span>
-              <p className="font-semibold">{attendedClasses}/{totalClasses}</p>
-            </div>
-            <div>
-              <span className="text-muted-foreground">Target</span>
-              <p className="font-semibold">{targetPercentage}%</p>
+              <span className="text-sm text-muted-foreground">Target: {targetPercentage}%</span>
             </div>
           </div>
         </div>
@@ -117,11 +133,11 @@ export function CIEPanicButton({
               <Input
                 id="total-classes"
                 type="number"
-                min={totalClasses}
+                min={customTotalClasses}
                 value={newCheckpoint.totalClassesExpected}
                 onChange={(e) => setNewCheckpoint({
                   ...newCheckpoint,
-                  totalClassesExpected: parseInt(e.target.value) || totalClasses
+                  totalClassesExpected: parseInt(e.target.value) || customTotalClasses
                 })}
                 placeholder="Total classes by checkpoint"
               />

@@ -23,27 +23,27 @@ export function GroupBunkPlanner({
   const [groupMembers, setGroupMembers] = useState<GroupMember[]>([]);
   const [newMember, setNewMember] = useState({
     name: '',
-    subjectId: subjects[0]?.id || ''
+    attendancePercentage: 0,
+    totalClasses: 0
   });
   const [proposedMissedClasses, setProposedMissedClasses] = useState(1);
   const [bunkPlan, setBunkPlan] = useState<GroupBunkPlan | null>(null);
 
   const addMember = () => {
-    if (!newMember.name.trim() || !newMember.subjectId) return;
+    if (!newMember.name.trim() || !newMember.totalClasses || !newMember.attendancePercentage) return;
 
-    const subject = subjects.find(s => s.id === newMember.subjectId);
-    if (!subject) return;
+    const attendedClasses = Math.round((newMember.attendancePercentage / 100) * newMember.totalClasses);
 
     const member: GroupMember = {
       id: Date.now().toString(),
       name: newMember.name,
-      totalClasses: subject.totalClasses,
-      attendedClasses: subject.attendedClasses,
+      totalClasses: newMember.totalClasses,
+      attendedClasses,
       targetPercentage: targetPercentage
     };
 
     setGroupMembers([...groupMembers, member]);
-    setNewMember({ name: '', subjectId: subjects[0]?.id || '' });
+    setNewMember({ name: '', attendancePercentage: 0, totalClasses: 0 });
   };
 
   const removeMember = (id: string) => {
@@ -93,28 +93,40 @@ export function GroupBunkPlanner({
                 placeholder="Friend's name"
               />
             </div>
-            <div>
-              <Label htmlFor="member-subject">Their Subject Data</Label>
-              <select
-                id="member-subject"
-                value={newMember.subjectId}
+            <div className="space-y-2">
+              <Label htmlFor="friend-percentage">Friend's Current Attendance %</Label>
+              <Input
+                id="friend-percentage"
+                type="number"
+                min="0"
+                max="100"
+                step="0.1"
+                value={newMember.attendancePercentage || ''}
                 onChange={(e) => setNewMember({
                   ...newMember,
-                  subjectId: e.target.value
+                  attendancePercentage: parseFloat(e.target.value) || 0
                 })}
-                className="w-full p-2 border rounded-md bg-background"
-              >
-                {subjects.map(subject => (
-                  <option key={subject.id} value={subject.id}>
-                    {subject.name} ({((subject.attendedClasses / subject.totalClasses) * 100).toFixed(1)}%)
-                  </option>
-                ))}
-              </select>
+                placeholder="e.g., 78.5"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="friend-total-classes">Their Total Classes</Label>
+              <Input
+                id="friend-total-classes"
+                type="number"
+                min="1"
+                value={newMember.totalClasses || ''}
+                onChange={(e) => setNewMember({
+                  ...newMember,
+                  totalClasses: parseInt(e.target.value) || 0
+                })}
+                placeholder="e.g., 45"
+              />
             </div>
           </div>
           <Button 
             onClick={addMember} 
-            disabled={!newMember.name.trim() || !newMember.subjectId}
+            disabled={!newMember.name.trim() || !newMember.totalClasses || !newMember.attendancePercentage}
             className="w-full"
           >
             Add Member

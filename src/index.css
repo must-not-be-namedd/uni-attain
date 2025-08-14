@@ -5,49 +5,48 @@
 /* Dark Mode First Design System */
 @layer base {
   :root {
-    /* Dark theme as default for cool dark experience */
-    --background: 222 84% 3%;
-    --foreground: 210 40% 98%;
-    --card: 222 84% 5%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222 84% 4%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 262 83% 58%;
-    --primary-foreground: 210 40% 98%;
-    --primary-glow: 262 83% 68%;
-    --secondary: 240 21% 15%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 240 21% 10%;
-    --muted-foreground: 215 20% 65%;
-    --accent: 262 83% 58%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 240 21% 15%;
-    --input: 240 21% 15%;
-    --ring: 262 83% 58%;
-    --radius: 1rem;
+    /* Dark theme - greyish background with refined colors */
+    --background: 240 6% 12%; /* Greyish background */
+    --foreground: 240 5% 95%;
+    --card: 240 5% 16%; /* Slightly lighter grey for cards */
+    --card-foreground: 240 5% 95%;
+    --popover: 240 5% 14%;
+    --popover-foreground: 240 5% 95%;
+    --primary: 200 40% 65%; /* Toned down light blue #8DBCCC */
+    --primary-foreground: 240 6% 12%;
+    --primary-glow: 200 40% 75%;
+    --secondary: 220 35% 50%; /* Refined darker blue #4C6793 */
+    --secondary-foreground: 240 5% 95%;
+    --muted: 240 5% 20%;
+    --muted-foreground: 240 4% 65%;
+    --accent: 270 40% 45%; /* Refined purple #5C2E7E */
+    --accent-foreground: 240 5% 95%;
+    --destructive: 0 55% 45%;
+    --destructive-foreground: 0 85% 97%;
+    --border: 240 5% 22%;
+    --input: 240 5% 18%;
+    --ring: 200 40% 65%;
+    --radius: 0.75rem;
     
-    /* Status colors with dark theme compatibility */
-    --success: 142 76% 45%;
-    --success-foreground: 142 76% 95%;
-    --warning: 45 93% 55%;
-    --warning-foreground: 45 93% 10%;
+    /* Status colors */
+    --success: 142 60% 45%;
+    --success-foreground: 355 100% 97%;
+    --warning: 48 80% 55%;
+    --warning-foreground: 20 14% 4%;
     
-    /* Cool color palette */
-    --cyan: 188 94% 58%;
-    --cyan-foreground: 188 94% 10%;
-    --purple: 262 83% 58%;
-    --purple-foreground: 262 83% 10%;
-    --blue: 217 91% 60%;
-    --blue-foreground: 217 91% 10%;
-    --indigo: 239 84% 67%;
-    --indigo-foreground: 239 84% 10%;
+    /* Shadows - very subtle */
+    --shadow-elegant: 0 8px 24px -8px hsl(200 40% 65% / 0.15);
+    --shadow-glow: 0 0 32px hsl(200 40% 65% / 0.1);
+    --shadow-card: 0 4px 6px -1px hsl(240 5% 8% / 0.25);
     
-    /* Enhanced gradients for dark theme */
-    --gradient-primary: linear-gradient(135deg, hsl(262 83% 58%), hsl(217 91% 60%));
-    --gradient-secondary: linear-gradient(135deg, hsl(240 21% 15%), hsl(240 21% 20%));
-    --gradient-success: linear-gradient(135deg, hsl(142 76% 45%), hsl(158 64% 52%));
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --animation-glow: glow 2s ease-in-out infinite alternate;
+    
+    /* Gradients - subtle and refined */
+    --gradient-primary: linear-gradient(135deg, hsl(200, 40%, 65%), hsl(220, 35%, 50%));
+    --gradient-secondary: linear-gradient(135deg, hsl(220, 35%, 50%), hsl(270, 40%, 45%));
+    --gradient-subtle: linear-gradient(180deg, hsl(240, 5%, 16%), hsl(240, 6%, 12%));
     --gradient-warning: linear-gradient(135deg, hsl(45 93% 55%), hsl(38 92% 50%));
     --gradient-danger: linear-gradient(135deg, hsl(0 84% 60%), hsl(10 87% 65%));
     --gradient-cool: linear-gradient(135deg, hsl(188 94% 58%), hsl(262 83% 58%));
