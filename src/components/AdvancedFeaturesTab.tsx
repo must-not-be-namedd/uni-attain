@@ -138,31 +138,37 @@ export function AdvancedFeaturesTab({
           {/* Direct Feature Grid - All features listed directly */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Bunk Forecast */}
-            {metrics && (
-              <BunkForecastCard
-                forecast={metrics.forecast}
-                memeStatus={metrics.memeStatus}
-                currentPercentage={metrics.currentPercentage}
-                targetPercentage={customTargetPercentage}
-              />
-            )}
+            <div className="tour-bunk-forecast">
+              {metrics && (
+                <BunkForecastCard
+                  forecast={metrics.forecast}
+                  memeStatus={metrics.memeStatus}
+                  currentPercentage={metrics.currentPercentage}
+                  targetPercentage={customTargetPercentage}
+                />
+              )}
+            </div>
 
             {/* Reverse Calculator */}
-            <ReverseCalculator
-              totalClasses={selectedSubject.totalClasses}
-              attendedClasses={selectedSubject.attendedClasses}
-              classesPerWeek={settings.weeklyClasses || 3}
-              targetPercentage={customTargetPercentage}
-            />
+            <div className="tour-reverse-calculator">
+              <ReverseCalculator
+                totalClasses={selectedSubject.totalClasses}
+                attendedClasses={selectedSubject.attendedClasses}
+                classesPerWeek={settings.weeklyClasses || 3}
+                targetPercentage={customTargetPercentage}
+              />
+            </div>
 
             {/* Safe Buffer Slider */}
-            {metrics && (
-              <SafeBufferSlider
-                currentPercentage={metrics.currentPercentage}
-                targetPercentage={customTargetPercentage}
-                onTargetChange={setCustomTargetPercentage}
-              />
-            )}
+            <div className="tour-safe-buffer">
+              {metrics && (
+                <SafeBufferSlider
+                  currentPercentage={metrics.currentPercentage}
+                  targetPercentage={customTargetPercentage}
+                  onTargetChange={setCustomTargetPercentage}
+                />
+              )}
+            </div>
 
             {/* CIE Panic Button */}
             <CIEPanicButton
@@ -173,28 +179,34 @@ export function AdvancedFeaturesTab({
             />
 
             {/* Group Bunk Planner */}
-            <GroupBunkPlanner
-              subjects={subjects}
-              targetPercentage={customTargetPercentage}
-            />
+            <div className="tour-group-planner">
+              <GroupBunkPlanner
+                subjects={subjects}
+                targetPercentage={customTargetPercentage}
+              />
+            </div>
 
             {/* Life Event Planner */}
-            <LifeEventPlanner
-              totalClasses={selectedSubject.totalClasses}
-              attendedClasses={selectedSubject.attendedClasses}
-              targetPercentage={customTargetPercentage}
-              classesPerWeek={settings.weeklyClasses || 3}
-            />
+            <div className="tour-life-planner">
+              <LifeEventPlanner
+                totalClasses={selectedSubject.totalClasses}
+                attendedClasses={selectedSubject.attendedClasses}
+                targetPercentage={customTargetPercentage}
+                classesPerWeek={settings.weeklyClasses || 3}
+              />
+            </div>
 
             {/* Weekly Roast Report */}
             <WeeklyRoastReport metrics={weeklyMetrics} />
 
             {/* Quick Stats */}
-            <QuickStats 
-              totalClasses={selectedSubject.totalClasses}
-              attendedClasses={selectedSubject.attendedClasses}
-              currentPercentage={metrics?.currentPercentage || 0}
-            />
+            <div className="tour-quick-stats">
+              <QuickStats 
+                totalClasses={selectedSubject.totalClasses}
+                attendedClasses={selectedSubject.attendedClasses}
+                currentPercentage={metrics?.currentPercentage || 0}
+              />
+            </div>
           </div>
         </div>
       )}

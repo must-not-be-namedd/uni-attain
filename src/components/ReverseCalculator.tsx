@@ -131,30 +131,33 @@ export function ReverseCalculator({
           </div>
 
           <TabsContent value="project" className="space-y-4">
-            <div>
-              <Label htmlFor="weeks">Weeks to project</Label>
-              <Input
-                id="weeks"
-                type="number"
-                value={weeksToProject}
-                onChange={(e) => setWeeksToProject(parseInt(e.target.value) || 1)}
-                placeholder="Enter any number of weeks"
-              />
-            </div>
+              <div>
+                <Label htmlFor="weeks">Weeks to project</Label>
+                <Input
+                  id="weeks"
+                  type="number"
+                  min="0"
+                  value={weeksToProject || ''}
+                  onChange={(e) => setWeeksToProject(e.target.value === '' ? 1 : Math.max(1, parseInt(e.target.value) || 1))}
+                  placeholder="Enter any number of weeks"
+                />
+              </div>
           </TabsContent>
 
           <TabsContent value="target" className="space-y-4">
-            <div>
-              <Label htmlFor="target">Target percentage</Label>
-              <Input
-                id="target"
-                type="number"
-                step="0.1"
-                value={customTarget}
-                onChange={(e) => setCustomTarget(parseFloat(e.target.value) || 85)}
-                placeholder="Enter target percentage (e.g., 85)"
-              />
-            </div>
+              <div>
+                <Label htmlFor="target">Target percentage</Label>
+                <Input
+                  id="target"
+                  type="number"
+                  step="0.1"
+                  min="0"
+                  max="100"
+                  value={customTarget || ''}
+                  onChange={(e) => setCustomTarget(e.target.value === '' ? 85 : Math.max(0, Math.min(100, parseFloat(e.target.value) || 85)))}
+                  placeholder="Enter target percentage (e.g., 85)"
+                />
+              </div>
           </TabsContent>
         </Tabs>
 
@@ -170,19 +173,20 @@ export function ReverseCalculator({
             </div>
 
             <TabsContent value="weekly_count" className="space-y-4">
-              <div>
-                <Label htmlFor="weekly-classes">Classes you'll attend per week</Label>
-                <Input
-                  id="weekly-classes"
-                  type="number"
-                  value={pattern.classesPerWeek || 0}
-                  onChange={(e) => setPattern({
-                    ...pattern,
-                    classesPerWeek: parseInt(e.target.value) || 0
-                  })}
-                  placeholder="Classes you'll attend per week"
-                />
-              </div>
+                <div>
+                  <Label htmlFor="weekly-classes">Classes you'll attend per week</Label>
+                  <Input
+                    id="weekly-classes"
+                    type="number"
+                    min="0"
+                    value={pattern.classesPerWeek === 0 ? '' : pattern.classesPerWeek || ''}
+                    onChange={(e) => setPattern({
+                      ...pattern,
+                      classesPerWeek: e.target.value === '' ? 0 : Math.max(0, parseInt(e.target.value) || 0)
+                    })}
+                    placeholder="Classes you'll attend per week"
+                  />
+                </div>
             </TabsContent>
 
             <TabsContent value="specific_days" className="space-y-4">

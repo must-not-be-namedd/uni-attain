@@ -152,12 +152,11 @@ export function LifeEventPlanner({
               <Input
                 id="missed-classes"
                 type="number"
-                min="1"
-                max="20"
-                value={newEvent.expectedMissedClasses}
+                min="0"
+                value={newEvent.expectedMissedClasses || ''}
                 onChange={(e) => setNewEvent({
                   ...newEvent,
-                  expectedMissedClasses: parseInt(e.target.value) || 1
+                  expectedMissedClasses: e.target.value === '' ? 0 : Math.max(0, parseInt(e.target.value) || 0)
                 })}
                 placeholder="Number of classes"
               />

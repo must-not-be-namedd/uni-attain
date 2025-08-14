@@ -101,10 +101,10 @@ export function GroupBunkPlanner({
                 min="0"
                 max="100"
                 step="0.1"
-                value={newMember.attendancePercentage || ''}
+                value={newMember.attendancePercentage === 0 ? '' : newMember.attendancePercentage}
                 onChange={(e) => setNewMember({
                   ...newMember,
-                  attendancePercentage: parseFloat(e.target.value) || 0
+                  attendancePercentage: e.target.value === '' ? 0 : Math.max(0, Math.min(100, parseFloat(e.target.value) || 0))
                 })}
                 placeholder="e.g., 78.5"
               />
@@ -114,11 +114,11 @@ export function GroupBunkPlanner({
               <Input
                 id="friend-total-classes"
                 type="number"
-                min="1"
-                value={newMember.totalClasses || ''}
+                min="0"
+                value={newMember.totalClasses === 0 ? '' : newMember.totalClasses}
                 onChange={(e) => setNewMember({
                   ...newMember,
-                  totalClasses: parseInt(e.target.value) || 0
+                  totalClasses: e.target.value === '' ? 0 : Math.max(0, parseInt(e.target.value) || 0)
                 })}
                 placeholder="e.g., 45"
               />
@@ -172,10 +172,9 @@ export function GroupBunkPlanner({
               <Input
                 id="missed-classes"
                 type="number"
-                min="1"
-                max="10"
-                value={proposedMissedClasses}
-                onChange={(e) => setProposedMissedClasses(parseInt(e.target.value) || 1)}
+                min="0"
+                value={proposedMissedClasses || ''}
+                onChange={(e) => setProposedMissedClasses(e.target.value === '' ? 1 : Math.max(1, parseInt(e.target.value) || 1))}
                 placeholder="Number of classes"
               />
             </div>
