@@ -1,10 +1,13 @@
 import { useState } from 'react';
-import { Plus } from 'lucide-react';
+import { Plus, Sparkles, Target, TrendingUp, Users, Calendar, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Badge } from '@/components/ui/badge';
 import { SubjectCard } from './SubjectCard';
 import { AddSubjectDialog } from './AddSubjectDialog';
 import { OverallStats } from './OverallStats';
+import { AdvancedFeaturesTab } from './AdvancedFeaturesTab';
 import { Subject, AttendanceSettings } from '@/types/attendance';
 
 export function AttendanceDashboard() {
@@ -35,77 +38,172 @@ export function AttendanceDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-background p-4">
-      <div className="max-w-7xl mx-auto space-y-6">
-        {/* Header */}
-        <div className="text-center space-y-4 relative">
-          {/* University-style header */}
-          <div className="inline-block">
-            <div className="text-xs text-muted-foreground mb-1 tracking-wider uppercase">
-              Smart Attendance Management
+    <div className="min-h-screen bg-background">
+      {/* Hero Section */}
+      <div className="relative overflow-hidden">
+        {/* Background Effects */}
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-blue-900/20 to-cyan-900/20"></div>
+        <div className="absolute top-1/4 -left-20 w-40 h-40 bg-purple-500/30 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 -right-20 w-40 h-40 bg-cyan-500/30 rounded-full blur-3xl animate-pulse delay-700"></div>
+        
+        <div className="relative max-w-7xl mx-auto px-4 py-16">
+          {/* Header */}
+          <div className="text-center space-y-6 animate-fade-in">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-purple-500/30 bg-purple-500/10 backdrop-blur-sm">
+              <Sparkles className="w-4 h-4 text-purple-400" />
+              <span className="text-sm text-purple-300 font-medium">Smart Attendance Management</span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent leading-tight">
-              The Grade-A Bunker
-            </h1>
-            <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-2 rounded-full"></div>
+            
+            <div className="space-y-4">
+              <h1 className="text-5xl md:text-7xl font-bold gradient-text leading-tight animate-slide-up">
+                The Grade-A Bunker
+              </h1>
+              <div className="w-32 h-1 bg-gradient-to-r from-purple-500 via-blue-500 to-cyan-500 mx-auto rounded-full animate-glow"></div>
+            </div>
+            
+            <div className="max-w-3xl mx-auto space-y-4 animate-scale-in">
+              <p className="text-xl text-muted-foreground leading-relaxed">
+                The most <span className="text-purple-400 font-semibold">intelligent</span> attendance management system for college students.
+                Track, analyze, and optimize your academic performance with 
+                <span className="text-cyan-400 font-semibold"> AI-powered insights</span>.
+              </p>
+              
+              <div className="flex flex-wrap justify-center gap-3 mt-6">
+                <Badge variant="secondary" className="bg-purple-500/20 text-purple-300 border-purple-500/30">
+                  <Target className="w-3 h-3 mr-1" />
+                  Smart Forecasting
+                </Badge>
+                <Badge variant="secondary" className="bg-blue-500/20 text-blue-300 border-blue-500/30">
+                  <TrendingUp className="w-3 h-3 mr-1" />
+                  Trend Analysis
+                </Badge>
+                <Badge variant="secondary" className="bg-cyan-500/20 text-cyan-300 border-cyan-500/30">
+                  <Users className="w-3 h-3 mr-1" />
+                  Group Planning
+                </Badge>
+                <Badge variant="secondary" className="bg-green-500/20 text-green-300 border-green-500/30">
+                  <Shield className="w-3 h-3 mr-1" />
+                  Risk Assessment
+                </Badge>
+              </div>
+            </div>
           </div>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Smart attendance management system for college students to track, analyze, and optimize academic performance
-          </p>
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto px-4 pb-16">
+        {/* Overall Stats */}
+        <div className="animate-fade-in" style={{ animationDelay: '0.2s' }}>
+          <OverallStats subjects={subjects} settings={settings} />
         </div>
 
-        {/* Overall Stats */}
-        <OverallStats subjects={subjects} settings={settings} />
+        {/* Feature Tabs */}
+        <div className="mt-12 animate-fade-in" style={{ animationDelay: '0.4s' }}>
+          <Tabs defaultValue="subjects" className="space-y-6">
+            <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 bg-card/50 backdrop-blur-sm border border-border/50">
+              <TabsTrigger value="subjects" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                <Calendar className="w-4 h-4 mr-2" />
+                Subjects
+              </TabsTrigger>
+              <TabsTrigger value="advanced" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                <Sparkles className="w-4 h-4 mr-2" />
+                Advanced
+              </TabsTrigger>
+              <TabsTrigger value="analytics" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                <TrendingUp className="w-4 h-4 mr-2" />
+                Analytics
+              </TabsTrigger>
+              <TabsTrigger value="planner" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                <Users className="w-4 h-4 mr-2" />
+                Planner
+              </TabsTrigger>
+            </TabsList>
 
-        {/* Subjects Grid */}
-        <div className="space-y-4">
-          <div className="flex items-center justify-between bg-gradient-to-r from-slate-50 to-blue-50 dark:from-slate-900 dark:to-blue-950/20 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
-            <div>
-              <h2 className="text-2xl font-semibold text-slate-900 dark:text-slate-100">Academic Subjects</h2>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Real-time attendance tracking with instant calculations
-              </p>
-            </div>
-            <Button 
-              onClick={() => setIsAddDialogOpen(true)}
-              className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-lg hover:shadow-xl transition-all duration-300 text-white border-0"
-            >
-              <Plus className="w-4 h-4 mr-2" />
-              Add Subject
-            </Button>
-          </div>
-
-          {subjects.length === 0 ? (
-            <Card className="text-center py-12">
-              <CardContent>
-                <div className="text-muted-foreground mb-4">
-                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-muted flex items-center justify-center">
-                    <Plus className="w-8 h-8" />
+            <TabsContent value="subjects" className="space-y-6">
+              {/* Subjects Section */}
+              <div className="space-y-4">
+                <div className="flex items-center justify-between glass-effect p-6 rounded-2xl border border-border/50">
+                  <div>
+                    <h2 className="text-3xl font-bold gradient-text">Academic Subjects</h2>
+                    <p className="text-muted-foreground mt-2">
+                      Real-time attendance tracking with <span className="text-purple-400">instant calculations</span> & 
+                      <span className="text-cyan-400"> predictive analytics</span>
+                    </p>
                   </div>
-                  <h3 className="text-lg font-medium mb-2">No subjects added yet</h3>
-                  <p className="text-sm">Add your first subject to start tracking your attendance</p>
+                  <Button 
+                    onClick={() => setIsAddDialogOpen(true)}
+                    className="bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-700 hover:to-cyan-700 shadow-lg hover:shadow-purple-500/25 transition-all duration-300 text-white border-0 hover-lift"
+                  >
+                    <Plus className="w-4 h-4 mr-2" />
+                    Add Subject
+                  </Button>
                 </div>
-                <Button 
-                  onClick={() => setIsAddDialogOpen(true)}
-                  variant="outline"
-                >
-                  Add Your First Subject
-                </Button>
-              </CardContent>
-            </Card>
-          ) : (
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {subjects.map((subject) => (
-                <SubjectCard
-                  key={subject.id}
-                  subject={subject}
-                  settings={settings}
-                  onUpdate={updateSubject}
-                  onDelete={deleteSubject}
-                />
-              ))}
-            </div>
-          )}
+
+                {subjects.length === 0 ? (
+                  <Card className="text-center py-16 glass-effect border-border/50">
+                    <CardContent>
+                      <div className="text-muted-foreground mb-6">
+                        <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-r from-purple-500/20 to-cyan-500/20 flex items-center justify-center animate-pulse">
+                          <Plus className="w-10 h-10 text-purple-400" />
+                        </div>
+                        <h3 className="text-2xl font-bold gradient-text mb-3">Ready to dominate your attendance?</h3>
+                        <p className="text-lg">Add your first subject and unlock the power of smart attendance tracking</p>
+                      </div>
+                      <Button 
+                        onClick={() => setIsAddDialogOpen(true)}
+                        className="bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-700 hover:to-cyan-700 text-white border-0 px-8 py-3 text-lg hover-lift"
+                      >
+                        <Sparkles className="w-5 h-5 mr-2" />
+                        Start Your Journey
+                      </Button>
+                    </CardContent>
+                  </Card>
+                ) : (
+                  <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                    {subjects.map((subject, index) => (
+                      <div 
+                        key={subject.id}
+                        className="animate-scale-in hover-lift"
+                        style={{ animationDelay: `${index * 0.1}s` }}
+                      >
+                        <SubjectCard
+                          subject={subject}
+                          settings={settings}
+                          onUpdate={updateSubject}
+                          onDelete={deleteSubject}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </TabsContent>
+
+            <TabsContent value="advanced">
+              <AdvancedFeaturesTab 
+                subjects={subjects}
+                settings={settings}
+                onSettingsChange={setSettings}
+              />
+            </TabsContent>
+
+            <TabsContent value="analytics">
+              <div className="glass-effect p-8 rounded-2xl border border-border/50 text-center">
+                <TrendingUp className="w-16 h-16 mx-auto mb-4 text-purple-400" />
+                <h3 className="text-2xl font-bold gradient-text mb-2">Advanced Analytics</h3>
+                <p className="text-muted-foreground">Coming soon with detailed insights and predictions</p>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="planner">
+              <div className="glass-effect p-8 rounded-2xl border border-border/50 text-center">
+                <Users className="w-16 h-16 mx-auto mb-4 text-cyan-400" />
+                <h3 className="text-2xl font-bold gradient-text mb-2">Group Planner</h3>
+                <p className="text-muted-foreground">Coordinate with friends for optimal attendance strategies</p>
+              </div>
+            </TabsContent>
+          </Tabs>
         </div>
 
         <AddSubjectDialog

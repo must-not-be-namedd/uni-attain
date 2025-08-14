@@ -125,3 +125,11 @@ export interface TrendAnalysis {
   isImproving: boolean;
   isDeteriating: boolean;
 }
+
+export interface AdvancedAttendanceSettings {
+  targetPercentage: number; // P
+  lookbackWindow: number; // K
+  classesPerWeek: number; // Cpw
+  enableMemes: boolean;
+  enableRoasts: boolean;
+}
