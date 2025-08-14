@@ -79,7 +79,7 @@ export function AttendanceDashboard() {
         )}
 
         {/* Main Content */}
-        <StickyNote color="blue" className="mx-auto max-w-4xl">
+        <StickyNote color="periwinkle" size="full" className="mx-auto">
           <Tabs defaultValue="subjects" className="space-y-6">
             <TabsList className="w-full max-w-md mx-auto grid grid-cols-2">
               <TabsTrigger value="subjects" className="tour-subjects-tab flex items-center gap-2">

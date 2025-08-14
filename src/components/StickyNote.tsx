@@ -3,10 +3,10 @@ import { cn } from '@/lib/utils';
 
 interface StickyNoteProps {
   children: React.ReactNode;
-  color?: 'yellow' | 'blue' | 'green' | 'pink' | 'orange' | 'purple';
+  color?: 'yellow' | 'blue' | 'green' | 'pink' | 'orange' | 'purple' | 'periwinkle';
   rotate?: boolean;
   className?: string;
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
 }
 
 const colorVariants = {
@@ -16,12 +16,15 @@ const colorVariants = {
   pink: 'bg-pink-200 border-pink-300 text-pink-900 shadow-pink-200/50',
   orange: 'bg-orange-200 border-orange-300 text-orange-900 shadow-orange-200/50',
   purple: 'bg-purple-200 border-purple-300 text-purple-900 shadow-purple-200/50',
+  periwinkle: 'bg-[#CCCCFF] border-[#B8B8FF] text-[#4A4A8A] shadow-[#CCCCFF]/50',
 };
 
 const sizeVariants = {
   sm: 'p-3 text-sm min-h-[120px] w-full max-w-[200px]',
   md: 'p-4 text-base min-h-[150px] w-full max-w-[250px]',
   lg: 'p-6 text-lg min-h-[200px] w-full max-w-[300px]',
+  xl: 'p-8 text-lg min-h-[250px] w-full max-w-[600px]',
+  full: 'p-8 text-lg min-h-[300px] w-full max-w-[95vw]',
 };
 
 const rotateVariants = [
@@ -53,7 +56,7 @@ export function StickyNote({
         className
       )}
       style={{
-        fontFamily: 'Comic Sans MS, cursive, sans-serif',
+        fontFamily: 'system-ui, -apple-system, sans-serif',
       }}
     >
       {children}
