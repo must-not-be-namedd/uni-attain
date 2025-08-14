@@ -63,17 +63,7 @@ export function GroupBunkPlanner({
   };
 
   return (
-    <Card className={className}>
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Users className="h-5 w-5" />
-          Group Bunk Planner
-        </CardTitle>
-        <CardDescription>
-          Plan group bunks while keeping everyone safe
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-6">
+    <div className={`border-2 border-orange-500/30 rounded-lg p-6 space-y-6 shadow-lg shadow-orange-500/10 hover:shadow-orange-500/20 transition-all duration-300 ${className}`}>
         {/* Add New Member */}
         <div className="space-y-4 p-4 border rounded-lg bg-muted/20">
           <div className="flex items-center gap-2">
@@ -277,7 +267,6 @@ export function GroupBunkPlanner({
             <p>Add group members to start planning</p>
           </div>
         )}
-      </CardContent>
-    </Card>
+    </div>
   );
 }
