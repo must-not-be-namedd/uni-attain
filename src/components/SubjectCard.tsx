@@ -117,9 +117,14 @@ export function SubjectCard({ subject, settings, onUpdate, onDelete }: SubjectCa
           <div className="grid grid-cols-2 gap-3 text-sm">
             <div className="space-y-1">
               <div className="text-muted-foreground">You Can Bunk To Still Be Above 85%</div>
-              <div className="font-semibold text-lg">
-                {calculation.allowedBunksRemaining}
+              <div className="font-semibold text-lg text-primary">
+                {calculation.allowedBunksRemaining} classes
               </div>
+              {calculation.currentPercentage < 85 && (
+                <div className="text-xs text-destructive">
+                  Below 85% - No more bunks allowed!
+                </div>
+              )}
             </div>
             <div className="space-y-1">
               <div className="text-muted-foreground">To Reach 85% Safe You Need to attend more</div>

@@ -19,8 +19,8 @@ export function calculateAttendance(
   // Max absences by safe threshold
   const maxAbsencesBySafeThreshold = totalClasses - Math.ceil((safeThreshold * totalClasses) / 100);
   
-  // Total bunks taken (difference between total and attended)
-  const allowedBunksRemaining = alreadyAbsent;
+  // Calculate how many more absences are possible while staying above 85%
+  const allowedBunksRemaining = calculateSafeBunksRemaining(attendedClasses, totalClasses);
   
   // Classes to attend to reach 85% safe threshold
   const classesToAttendFor85Percent = calculateClassesToReachTarget(
@@ -73,6 +73,33 @@ function calculateClassesToReachTarget(
   if (denominator <= 0) return 0;
   
   return Math.max(0, Math.ceil(numerator / denominator));
+}
+
+function calculateSafeBunksRemaining(attended: number, total: number): number {
+  const currentPercentage = (attended / total) * 100;
+  
+  // If already below 85%, no more bunks allowed
+  if (currentPercentage < 85) {
+    return 0;
+  }
+  
+  let bunksCount = 0;
+  let tempAttended = attended;
+  let tempTotal = total;
+  
+  // Simulate marking absent (increasing total without increasing attended)
+  while (true) {
+    tempTotal += 1;
+    const newPercentage = (tempAttended / tempTotal) * 100;
+    
+    if (newPercentage < 85) {
+      break;
+    }
+    
+    bunksCount += 1;
+  }
+  
+  return bunksCount;
 }
 
 export function simulateAttendance(

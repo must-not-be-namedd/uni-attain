@@ -45,7 +45,7 @@ export function AttendanceDashboard() {
               Smart Attendance Management
             </div>
             <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent leading-tight">
-              The grade-A Bunker
+              The Grade-A Bunker
             </h1>
             <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-2 rounded-full"></div>
           </div>
